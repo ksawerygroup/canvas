@@ -5,14 +5,19 @@ canvas.height = window.innerHeight;
 
 ctx.strokeStyle = '#BADA55';
 ctx.lineJoin = 'round'; // połączenie lini
-ctx.lineCap = 'round'; // zakączenie lini
+ctx.lineCap = 'round'; // koniec lini
 
 let isDrawing = false;
-let lastX = 0;
-let lastY = 0;
+let lastX = 50;
+let lastY = 50;
 
 function draw(e) {
   if (!isDrawing) return;
+  ctx.beginPath();
+  ctx.moveTo(lastX, lastY); // start rysowania
+  ctx.lineTo(e.offsetX, e.offsetY)
+  ctx.stroke();
+  [lastX, lastY] = [e.offsetX, e.offsetY]; // skrót lastX = e.offsetX
 }
 
 canvas.addEventListener('mousemove', draw);

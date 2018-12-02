@@ -12,6 +12,7 @@ let isDrawing = false;
 let lastX = 50;
 let lastY = 50;
 let hue = 0;
+let direction = true;
 
 function draw(e) {
   if (!isDrawing) return;
@@ -25,9 +26,13 @@ function draw(e) {
   if (hue > 360) {
     hue = 0;
   };
-  ctx.lineWidth++;
-  if (ctx.lineWidth > 100) {
-    ctx.lineWidth = 10
+  if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+    direction = !direction;
+  }
+  if (direction) {
+    ctx.lineWidth++;
+  } else {
+    ctx.lineWidth--
   }
 }
 
